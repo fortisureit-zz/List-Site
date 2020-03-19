@@ -1,2 +1,2 @@
 # List-Site
-A Website for listing mobile order ready websites
+A Website for listing mobile order ready Restaurants
