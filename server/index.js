@@ -4,6 +4,7 @@ const cors = require('cors')
 const https = require('https')
 const fs = require('fs')
 const filename = './secrets/ca-certificate.crt'
+require('dotenv').config()
 
 const mysql = require('mysql')
 
@@ -15,9 +16,9 @@ const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM ConnTest'
 
 const pool = mysql.createPool({
     connectionLimit : 10,
-    host            : 'restaurant-list-db-do-user-7144326-0.a.db.ondigitalocean.com',
-    user            : 'doadmin',
-    password        : 'xwuk8weoo3swlnbd',
+    host            : process.env.HOST,
+    user            : process.env.USER,
+    password        : process.env.PASS,
     database        : 'defaultdb',
     port            : 25060,
     ssl             : {

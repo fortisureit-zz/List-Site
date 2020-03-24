@@ -1,3 +1,5 @@
-/nodemodules
+/node_modules
 
-/secrets
+HOST=restaurant-list-db-do-user-7144326-0.a.db.ondigitalocean.com
+USER=doadmin
+PASS=xwuk8weoo3swlnbd
