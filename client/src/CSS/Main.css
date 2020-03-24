@@ -1,0 +1,22 @@
+
+.h1 { 
+    text-align: center !important;
+    margin: auto;
+    padding: auto;
+}
+
+/* .landing {
+    padding: 20px !important;
+} */
+
+.button.button.red {
+    margin-top: 20px;
+}
+
+.arrow.down.icon {
+    margin-top: 20px;
+}
+
+/* .ui.cards {
+    justify-content: space-between !important;
+} */
