@@ -17,6 +17,14 @@
     margin-top: 20px;
 }
 
+.websiteBtn {
+    color: #21BA45 !important;
+}
+.orderBtn {
+    color: #DB2828 !important;
+    font-style: italic;
+}
+
 /* .ui.cards {
     justify-content: space-between !important;
 } */

@@ -25,12 +25,13 @@ class Home extends Component {
         .catch(err => console.error(err));
       }
     
-      renderRestaurant = ({ field1, field2  }) => 
+      renderRestaurant = ({ RestrntID, City  }) => 
         
-        <Grid.Column key={field1} mobile={16} tablet={8} computer={2}> 
+      // NOTE: map through array of colors
+        <Grid.Column key={RestrntID} mobile={16} tablet={8} computer={2}> 
              <a href="/list">
                 <Button size='massive' >
-                    {field2}
+                    {City}
                 </Button>
             </a>
         </Grid.Column>

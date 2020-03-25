@@ -12,14 +12,14 @@ const mysql = require('mysql')
 
 const app = express()
 
-const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM ConnTest'
+const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM Restrnts'
 
 const pool = mysql.createPool({
     connectionLimit : 10,
     host            : process.env.HOST,
     user            : process.env.USER,
     password        : process.env.PASS,
-    database        : 'defaultdb',
+    database        : 'Restrnt_Listing',
     port            : 25060,
     ssl             : {
         ca: fs.readFileSync(filename, function(err, data) {
@@ -30,11 +30,6 @@ const pool = mysql.createPool({
     }
 
 })
-    // pool.connect(err => {
-    //     if(err) {
-    //         return err
-    //     }
-    // })
 
 app.use(cors())
 
