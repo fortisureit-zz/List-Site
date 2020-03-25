@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import List from './components/List';
 import Home from './components/Home';
+import Footer from "./components/Footer"
 
 
 import './index.css';
@@ -20,6 +21,7 @@ ReactDOM.render((
             <Route path="/" component={Home} exact />
             <Route path="/list" component={List} />
           </Switch>
+          <Footer></Footer>
         </div>
       </BrowserRouter>
 

@@ -8,6 +8,7 @@ import "../CSS/Main.css"
 
 import { Header, Segment, Button, Icon, Grid, Image, Divider } from "semantic-ui-react"
 
+
 class Home extends Component {
 
     state = {
@@ -28,47 +29,37 @@ class Home extends Component {
       renderRestaurant = ({ RestrntID, City  }) => 
         
       // NOTE: map through array of colors
-        <Grid.Column key={RestrntID} mobile={16} tablet={8} computer={2}> 
+        <div key={RestrntID}> 
              <a href="/list">
                 <Button size='massive' >
                     {City}
                 </Button>
             </a>
-        </Grid.Column>
+        </div>
     
 
   render() {
     const { restaurants } = this.state
     return (
-      <div className="main">
-        <Grid divided="vertically" centered="true" relaxed>
-          <Grid.Row columns={2}>
-            <Grid.Column verticalAlign="middle" textAlign="center" mobile={16} tablet={9} computer={6}>
-              <Header as="h1" textAlign="right">
-                <Icon name="street view" />
-                <Header.Content>Welcome to Fortisure Foods</Header.Content>
+      <div id="main">
+
+              <Header id='main-header' as="h1" textAlign="right">
+                <div id='inner-header'>
+                  <Icon name="street view" />
+                  <Header.Content>Welcome to Fortisure Foods</Header.Content>
+                </div>
               </Header>
-            </Grid.Column>
-            <Grid.Column verticalAlign="middle" mobile={16} tablet={9} computer={6}>
-              <SearchComponent></SearchComponent>
-            </Grid.Column>
-          </Grid.Row>
 
-          <Grid.Row columns='equal'>
+              <SearchComponent id='search-bar'></SearchComponent>
 
-            <Grid.Column verticalAlign="middle" width={8} className='landing' mobile={16} tablet={9} computer={6}>
-              <Image src={image}></Image>
-            </Grid.Column>
-            <Grid.Column verticalAlign="middle" mobile={16} tablet={9} computer={6}>
-              <h1>Find your City!</h1>
-            </Grid.Column>
+              <Image src={image} id='main-image'></Image>
 
-          </Grid.Row>
-          <Grid.Row columns='equal'>
+              <h2>Find your City!</h2>
 
-            {restaurants.map(this.renderRestaurant)}
-          </Grid.Row>
-        </Grid>
+              <div id='cities'>
+                {restaurants.map(this.renderRestaurant)}
+              </div>
+              
       </div>
     )
   }

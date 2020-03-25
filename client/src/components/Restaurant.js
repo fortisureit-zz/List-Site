@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import '../CSS/App.css';
 
 import { Button, Card, Image } from 'semantic-ui-react'
-import logo from '../images/wendys-logo.jpg'
 import eggs from '../images/eggs.jpg'
 class App extends Component {
   
   state = {
-    restaurants: []
+    restaurants: [],
+    images: [
+      eggs,
+      
+    ]
   }
 
   componentDidMount() {
