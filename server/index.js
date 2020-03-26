@@ -32,7 +32,7 @@ const pool = mysql.createPool({
 })
 const whitelist = ['http://localhost:3000', 'http://localhost:5000/server', 'http://localhost:5000']
 const corsOptionsDelegate = function (req, callback) {
-  const corsOptions;
+  const corsOptions = {}
   if (whitelist.indexOf(req.header('Origin')) !== -1) {
     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
   } else {
