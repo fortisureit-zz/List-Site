@@ -48,7 +48,7 @@ app.use(cors(corsOptionsDelegate))
 
 //})
 
-app.get('/', (req,res) => {
+app.get('/server', (req,res) => {
 
     pool.query(SELECT_ALL_PRODUCTS_QUERY, (err, results) => {
         if(err) {
