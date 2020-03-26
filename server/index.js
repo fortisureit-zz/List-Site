@@ -43,12 +43,12 @@ const corsOptionsDelegate = function (req, callback) {
 
 app.use(cors(corsOptionsDelegate))
 
-app.get('/', (req, res) => {
-    res.send("Index")
+// app.get('/', (req, res) => {
+//     res.send("Index")
 
 })
 
-app.get('/restaurants', (req,res) => {
+app.get('/', (req,res) => {
 
     pool.query(SELECT_ALL_PRODUCTS_QUERY, (err, results) => {
         if(err) {
