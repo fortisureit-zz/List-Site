@@ -1,7 +1,7 @@
 const express = require('express')
 
 const cors = require('cors')
-const https = require('https')
+const path = require('path')
 const fs = require('fs')
 const filename = './secrets/ca-certificate.crt'
 require('dotenv').config()
@@ -43,10 +43,12 @@ const pool = mysql.createPool({
 
 app.use(cors())
 
-// app.get('/', (req, res) => {
-//     res.send("Index")
+app.use(express.static(path.join(__dirname, 'build')))
 
-//})
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+
+})
 
 app.get('/server', (req,res) => {
 
