@@ -20,7 +20,7 @@ class Home extends Component {
       }
     
       getRestaurants = _ => {
-        fetch('http://localhost:5000/restaurants')
+        fetch('http://localhost:5000/server')
         .then(response => response.json())
         .then(response => this.setState({ restaurants: response.data }))
         .catch(err => console.error(err));
