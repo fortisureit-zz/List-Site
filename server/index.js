@@ -46,7 +46,7 @@ app.use(cors(corsOptionsDelegate))
 // app.get('/', (req, res) => {
 //     res.send("Index")
 
-})
+//})
 
 app.get('/', (req,res) => {
 
