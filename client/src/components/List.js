@@ -10,7 +10,7 @@ class List extends Component {
   }
 
   getRestaurants = _ => {
-    fetch('http://localhost:5000/server')
+    fetch('/server')
     .then(response => response.json())
     .then(response => this.setState({ restaurants: response.data }))
     .catch(err => console.error(err));
