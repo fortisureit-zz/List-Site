@@ -1,38 +1,50 @@
-import React, { Component } from "react"
-import Restaurant from "./Restaurant"
-import SearchComponent from "./Search"
-
-import image from "../images/two-women.jpg"
-
-import "../CSS/Main.css"
-
-import { Header, Segment, Button, Icon, Grid, Image, Divider } from "semantic-ui-react"
-
+import React, { Component } from 'react';
 class List extends Component {
+  
+  state = {
+    restaurants: [],
+  }
+
+  componentDidMount() {
+    this.getRestaurants()
+  }
+
+  getRestaurants = _ => {
+    fetch('http://localhost:5000/server')
+    .then(response => response.json())
+    .then(response => this.setState({ restaurants: response.data }))
+    .catch(err => console.error(err));
+  }
+
+  renderRestaurant = ({   
+    RestrntID, Name, 
+    Address, City, State, Zipcode, 
+    Phone, Website, DateAdded, 
+    OnlineOrders, OrderWebsite, Delivery 
+  }) => 
+    // NOTE: future add maybe an array of images that this maps through for each restaurnt
+    <div key={RestrntID}>
+      
+      {Name}
+        {Phone}
+          Located at {Address}, {City}, {State}, {Zipcode} 
+      Online Orders: { OnlineOrders}
+      Delivery: { Delivery}
+        <div className='ui two buttons'>
+          <a href={Website} className='websiteBtn'>Website</a>
+            <a href={OrderWebsite} className='orderBtn'>Order Now!</a>
+        </div>
+    </div>
   render() {
-
+    const { restaurants } = this.state
     return (
-      <div id="main">
-
-              <Header id='main-header' as="h1" textAlign="right">
-                <div id='inner-header'>
-                  <Icon name="street view" />
-                  <Header.Content>Welcome to Fortisure Foods</Header.Content>
-                </div>
-              </Header>
-
-              <SearchComponent id='search-bar'></SearchComponent>
-
-              <Image src={image} id='main-image'></Image>
-            
-              <h2>Order your food now!</h2>
-              <div id='restaurant-list'>
-                <Restaurant></Restaurant>
-              </div>
-              
+      
+      <div className="App">
+          {restaurants.map(this.renderRestaurant)}
       </div>
+      
     )
   }
 }
 
-export default List
+export default List;
