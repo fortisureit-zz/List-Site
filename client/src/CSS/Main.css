@@ -1,0 +1,116 @@
+/* UNIVERSALS */
+
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+body {
+  width: 100vw;
+  height: 100%;
+}
+
+/* NAVIGATION */
+
+#nav {
+  height: 100%;
+}
+
+#main {
+    margin: 100px 0;
+}
+
+.h1 {
+  text-align: center !important;
+  margin: auto;
+  padding: auto;
+}
+
+#logo-image {
+  width: 15px;
+}
+
+.ui.container {
+    justify-content: space-between;
+}
+
+#right-nav {
+    height: 100%;
+}
+
+/* HEADER */
+
+.street.view.icon {
+    padding-left: 10px;
+}
+
+#main-header {
+    font-size: 1.7em;
+    display: grid;
+    place-items: center;
+}
+
+#inner-header div {
+    padding-left: 10px !important;
+}
+
+/* SEARCH BAR */
+
+.ui.huge.search {
+    margin: 40px 20px;
+}
+
+.ui.icon.input {
+    width: 100%;
+}
+
+/* IMAGE */
+
+    #main-image {
+        margin: 50px 0;
+    }
+
+/* CARDS */
+
+#restaurant-list {
+    margin: 30px 0;
+}
+
+#main h2 {
+    text-align: center;
+}
+
+.ui.cards, #cities {
+    display: grid !important;
+    place-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 1rem;
+}
+
+.websiteBtn {
+  color: #21ba45 !important;
+}
+.orderBtn {
+  color: #db2828 !important;
+  font-style: italic;
+}
+
+
+
+/* FOOTER */
+
+#inner-footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax( 1fr));
+    place-items: center;
+}
+
+h5 {
+    margin-top: 20px !important;
+}
+
+#inner-footer p {
+    grid-column: 1 / 3;
+}
