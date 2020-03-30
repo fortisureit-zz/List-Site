@@ -5,12 +5,23 @@ const path = require('path')
 const fs = require('fs')
 const filename = './secrets/ca-certificate.crt'
 require('dotenv').config()
-
 const mysql = require('mysql')
 
-
-
 const app = express()
+
+// var whitelist = ['http://localhost:5000/', 'http://localhost:5000/server', 'http://localhost:3000']
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
+
+// Then pass them to cors:
+app.use(cors())
 
 const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM Restrnts'
 
@@ -30,25 +41,14 @@ const pool = mysql.createPool({
     }
 
 })
-// const whitelist = ['http://localhost:3000', 'http://localhost:5000/server', 'http://localhost:5000']
-// const corsOptionsDelegate = function (req, callback) {
-//   const corsOptions = {}
-//   if (whitelist.indexOf(req.header('Origin')) !== -1) {
-//     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-//   } else {
-//     corsOptions = { origin: false } // disable CORS for this request
-//   }
-//   callback(null, corsOptions) // callback expects two parameters: error and options
-// }
+// app.use(express.static(path.join(__dirname, 'build')))
 
-app.use(cors())
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'))
 
-app.use(express.static(path.join(__dirname, 'build')))
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+app.use(express.static(path.join(__dirname, 'client/build')))
 
-})
 
 app.get('/server', (req,res) => {
 
@@ -62,6 +62,12 @@ app.get('/server', (req,res) => {
         }
     })
 })
+
+
+app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+
 
 app.listen(5000, () => {
     console.log('listening on port:5000') 

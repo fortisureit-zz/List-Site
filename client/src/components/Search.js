@@ -37,8 +37,6 @@ export default class SearchComponent extends Component {
     const { isLoading, value, results } = this.state
 
     return (
-    //   <Grid>
-    //     <Grid.Column width={6}>
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
@@ -50,20 +48,5 @@ export default class SearchComponent extends Component {
             size='huge'
             {...this.props}
           />)
-        {/* </Grid.Column>
-        <Grid.Column width={10}>
-          <Segment>
-            <Header>State</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(this.state, null, 2)}
-            </pre>
-            <Header>Options</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(source, null, 2)}
-            </pre>
-          </Segment>
-        </Grid.Column>
-      </Grid> */}
-    
   }
 }

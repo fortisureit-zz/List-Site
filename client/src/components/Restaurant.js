@@ -7,10 +7,6 @@ class App extends Component {
   
   state = {
     restaurants: [],
-    images: [
-      eggs,
-      
-    ]
   }
 
   componentDidMount() {
@@ -65,15 +61,6 @@ class App extends Component {
     </Card>
 
   render() {
-    const { restaurants } = this.state
-    
-    const changeText = (e) => {
-      if (e === 'Y') {
-        return 'Yes'
-      } else {
-        return 'no'
-      }
-    }
     return (
       
       <div className="App">
