@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import App from './components/App.js'
 import Navigation from './components/Navigation'
 import List from './components/List';
 import Home from './components/Home';

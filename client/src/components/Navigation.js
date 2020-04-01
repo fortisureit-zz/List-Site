@@ -5,16 +5,9 @@ import fflogo from "../images/ff-logo.svg"
 
 import {
   Container,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
   Image,
   Menu
 } from "semantic-ui-react"
-
-import Home from "./Home"
-import List from "./List"
 
 const Navigation = () => {
   return (

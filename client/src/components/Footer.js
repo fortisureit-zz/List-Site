@@ -1,7 +1,4 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-
-import fflogo from "../images/ff-logo.svg"
 
 import {
   Segment,

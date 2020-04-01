@@ -1,13 +1,19 @@
 import React, { Component } from "react"
 import "../CSS/App.css"
 
-
-import { Button, Card, Image } from "semantic-ui-react"
-import eggs from '../images/eggs.jpg'
+import { Button, Card, Image, Input } from "semantic-ui-react"
+import eggs from "../images/eggs.jpg"
 
 class RestaurantCards extends Component {
-  state = {
-    restaurants: []
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      restaurants: [],
+      search: ""
+    }
+
+    this.searchHandler = this.searchHandler.bind(this)
   }
 
   componentDidMount() {
@@ -21,90 +27,58 @@ class RestaurantCards extends Component {
       .catch(err => console.error(err))
   }
 
-  renderRestaurant = ({
-    RestrntID,
-    Name,
-    Address,
-    City,
-    State,
-    Zipcode,
-    Phone,
-    Website,
-    DateAdded,
-    OnlineOrders,
-    OrderWebsite,
-    Delivery
-  }) => (
-    // NOTE: future add maybe an array of images that this maps through for each restaurnt
-    <Card key={RestrntID}>
-      <Card.Content>
-        <Image floated="right" size="medium" src={eggs} rounded />
-      </Card.Content>
-      <Card.Content>
-        <Card.Header>{Name}</Card.Header>
-        <Card.Meta>{Phone}</Card.Meta>
-        <Card.Description>
-          Located at {Address}, {City}, {State}, {Zipcode}
-        </Card.Description>
-      </Card.Content>
-      <Card.Content>
-        <Card.Meta></Card.Meta>
-        <Card.Meta>Online Orders: {OnlineOrders}</Card.Meta>
-        <Card.Meta>Delivery: {Delivery}</Card.Meta>
-      </Card.Content>
-      <Card.Content extra>
-        <div className="ui two buttons">
-          <Button basic color="green">
-            <a href={Website} className="websiteBtn">
-              Website
-            </a>
-          </Button>
-          <Button basic color="red">
-            <a href={OrderWebsite} className="orderBtn">
-              Order Now!
-            </a>
-          </Button>
-        </div>
-      </Card.Content>
-    </Card>
-  )
+  searchHandler(e) {
+    this.setState({ search: e.target.value })
+  }
 
   render() {
-    const { restaurants } = this.state
+    function searchingFor(search) {
+      return function(x) {
+        return x.Name.toLowerCase().includes(search.toLowerCase()) || !search
+      }
+    }
     return (
       <div className="App">
-        <Card>
-          <Card.Content>
-            <Image floated="right" size="medium" src={eggs} rounded />
-          </Card.Content>
-          <Card.Content>
-            <Card.Header>Name</Card.Header>
-            <Card.Meta>Phone</Card.Meta>
-            <Card.Description>
-              Located at Address, City, State, Zipcode
-            </Card.Description>
-          </Card.Content>
-          <Card.Content>
-            <Card.Meta></Card.Meta>
-            <Card.Meta>Online Orders: OnlineOrders</Card.Meta>
-            <Card.Meta>Delivery: Delivery</Card.Meta>
-          </Card.Content>
-          <Card.Content extra>
-            <div className="ui two buttons">
-              <Button basic color="green">
-                <a href="#" className="websiteBtn">
-                  Website
-                </a>
-              </Button>
-              <Button basic color="red">
-                <a href="#" className="orderBtn">
-                  Order Now!
-                </a>
-              </Button>
-            </div>
-          </Card.Content>
-        </Card>
-        <Card.Group>{restaurants.map(this.renderRestaurant)}</Card.Group>
+        <Input
+          icon="search"
+          onChange={this.searchHandler}
+          value={this.state.search}
+        ></Input>
+        {this.state.restaurants
+          .filter(searchingFor(this.state.search))
+          .map(restaurant => (
+            <Card key={restaurant.RestrntID}>
+              <Card.Content>
+                <Image floated="right" size="medium" src={eggs} rounded />
+              </Card.Content>
+              <Card.Content>
+                <Card.Header>{restaurant.Name}</Card.Header>
+                <Card.Meta>{restaurant.Phone}</Card.Meta>
+                <Card.Description>
+                  Located at {restaurant.Address}, {restaurant.City}, {restaurant.State}, {restaurant.Zipcode}
+                </Card.Description>
+              </Card.Content>
+              <Card.Content>
+                <Card.Meta></Card.Meta>
+                <Card.Meta>Online Orders: {restaurant.OnlineOrders}</Card.Meta>
+                <Card.Meta>Delivery: {restaurant.Delivery}</Card.Meta>
+              </Card.Content>
+              <Card.Content extra>
+                <div className="ui two buttons">
+                  <Button basic color="green">
+                    <a href={restaurant.Website} className="websiteBtn">
+                      Website
+                    </a>
+                  </Button>
+                  <Button basic color="red">
+                    <a href={restaurant.OrderWebsite} className="orderBtn">
+                      Order Now!
+                    </a>
+                  </Button>
+                </div>
+              </Card.Content>
+            </Card>
+          ))}
       </div>
     )
   }
