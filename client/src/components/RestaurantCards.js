@@ -4,14 +4,7 @@ import PropTypes from "prop-types"
 import { Button, Card, Image, Input } from "semantic-ui-react"
 import eggs from "../images/eggs.jpg"
 
-const src = [
-  'https://res.cloudinary.com/dz3p8xcr8/image/upload/v1585861242/restaurants/1_nts3hy.jpg',
-  'https://res.cloudinary.com/dz3p8xcr8/image/upload/v1585861242/restaurants/2_hydrcy.jpg',
-  'https://res.cloudinary.com/dz3p8xcr8/image/upload/v1585861242/restaurants/3_pcpfvz.jpg',
-  'https://res.cloudinary.com/dz3p8xcr8/image/upload/v1585861242/restaurants/4_wsocmk.jpg',
-  'https://res.cloudinary.com/dz3p8xcr8/image/upload/v1585861242/restaurants/5_qxta9a.jpg',
-  'https://res.cloudinary.com/dz3p8xcr8/image/upload/v1585861242/restaurants/6_vq6i0u.jpg'
-]
+
 
 class RestaurantCards extends Component {
   constructor(props) {
@@ -20,8 +13,6 @@ class RestaurantCards extends Component {
     this.state = {
       restaurants: [],
       search: "",
-      images: src,
-      selectedImage: src[0]
     }
 
     this.searchHandler = this.searchHandler.bind(this)
@@ -43,27 +34,30 @@ class RestaurantCards extends Component {
   }
 
   render() {
+    
+    // const { images, src } = this.state
+
     function searchingFor(search) {
       return function(x) {
         return x.Name.toLowerCase().includes(search.toLowerCase()) || !search
       }
     }
-    // srcFilter(key) {
-    //   for (let i = 0; i < this.state.src.length; i++) {
-    //     if (this.state.src[i] == key ) {
-    //       return this.state.src[i];
-    //     }
+  // function srcFilter(key) {
+  //     for (var i = 0; i < images.length; i++) {
+  //       if (images[i] == key ) {
+  //         return images[i];
+  //       }
 
-    //     images.map((image, index)=> image )
-    //     else {
-    //       return 'hi'
-    //     }
-    //   }
-    // }
-    // function srcFilter(key, string) {
-    //    return string + key + '.jpg'
-    // }
-    const { images, selectedImage } = this.state;
+  //       // images.map((image, index)=> image )
+  //       else {
+  //         return 'hi'
+  //       }
+  //     }
+  //   }
+    function srcFilter(key, string) {
+       return string + key + '.jpg'
+    }
+    
     return (
       <div id="search-cards">
         <Input
@@ -79,7 +73,7 @@ class RestaurantCards extends Component {
               .map(restaurant => (
                 <Card key={restaurant.RestrntID}>
                   <Card.Content>
-                    <Image floated="right" size="medium" src={eggs} rounded />
+                    <Image floated="right" size="medium" src={window.location.origin + "/images/" + restaurant.RestrntID + ".jpg"} rounded />
                   </Card.Content>
                   <Card.Content>
                     <Card.Header>{restaurant.Name}</Card.Header>
