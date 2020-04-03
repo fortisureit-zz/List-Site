@@ -1,0 +1,119 @@
+/* UNIVERSALS */
+
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+body {
+  width: 100vw;
+  height: 100%;
+}
+
+#home {
+    height: 85vh;
+}
+/* NAVIGATION */
+
+#nav {
+  height: 100%;
+  margin-bottom: 60px;
+}
+
+
+.h1 {
+  text-align: center !important;
+  margin: auto;
+  padding: auto;
+}
+
+#logo-image {
+  width: 15px;
+}
+
+.ui.container {
+    justify-content: space-between;
+}
+
+#right-nav {
+    height: 100%;
+}
+
+/* HEADER */
+
+.street.view.icon {
+    padding-left: 10px;
+}
+
+#main-header {
+    font-size: 1.7em;
+    display: grid;
+    place-items: center;
+}
+
+#main-image {
+    width: fit-content;
+}
+
+#inner-header div {
+    padding-left: 10px !important;
+}
+
+/* SEARCH BAR */
+
+.ui.icon.input {
+    width: 80%;
+    height: 50px;
+    max-width: 935px;
+}
+
+#search-bar {
+    border-radius: 50px;
+}
+/* IMAGE */
+
+#main-image {
+    width: 100%;
+    height: auto;
+}
+
+
+/* CARDS */
+
+#list h2 {
+    text-align: center;
+}
+
+/* need to take search bar out of restaurant list container */
+#cards-outer{
+    overflow-x: hidden;
+    height: 60vh;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+
+}
+
+#cards-outer::-webkit-scrollbar { width: 0 !important }
+
+.ui.card {
+    margin: 1em !important;
+}
+
+.websiteBtn {
+  color: #21ba45 !important;
+}
+.orderBtn {
+  color: #db2828 !important;
+  font-style: italic;
+}
+
+
+
+/* FOOTER */
+
+h5 {
+    margin-top: 20px !important;
+}
+

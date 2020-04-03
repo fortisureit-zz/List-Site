@@ -27,7 +27,7 @@ const Navigation = () => {
           </NavLink>
           <NavLink to="/list">
             <Menu.Item as="a" id="right-nav">
-              List
+              Restaurants
             </Menu.Item>
           </NavLink>
         </Container>

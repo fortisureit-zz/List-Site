@@ -9,12 +9,16 @@ import Footer from "./components/Footer"
 
 import * as serviceWorker from './serviceWorker'
 import 'semantic-ui-css/semantic.min.css'
-import './CSS/Main.css'
-import './index.css'
+import './CSS/Grid.css'
+import './CSS/Style.css'
+import './CSS/MediaQ.css'
+
+
+
 
 ReactDOM.render((
   <BrowserRouter>
-        <div>
+        <div id='index'>
           <Navigation />
           <Switch>
             <Route path="/" component={Home} exact />
