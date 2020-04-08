@@ -19,10 +19,9 @@ import './CSS/MediaQ.css'
 ReactDOM.render((
   <BrowserRouter>
         <div id='index'>
-          <Navigation />
           <Switch>
-            <Route path="/" component={Home} exact />
-            <Route path="/list" component={List} />
+            <Route path="/home" component={Home} exact />
+            <Route path="/" component={List} />
           </Switch>
           <Footer></Footer>
         </div>

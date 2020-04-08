@@ -23,7 +23,8 @@ const app = express()
 // Then pass them to cors:
 app.use(cors())
 
-const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM Restrnts'
+const RESTRNTS_QUERY = 'SELECT * FROM Restrnts'
+const HOURS_QUERY = 'SELECT * FROM HrsofOp'
 
 const pool = mysql.createPool({
     connectionLimit : 10,
@@ -50,9 +51,22 @@ const pool = mysql.createPool({
 app.use(express.static(path.join(__dirname, 'build')))
 
 
-app.get('/server', (req,res) => {
+app.get('/restaurants', (req,res) => {
 
-    pool.query(SELECT_ALL_PRODUCTS_QUERY, (err, results) => {
+    pool.query(RESTRNTS_QUERY , (err, results) => {
+        if(err) {
+            return res.send(err)
+        } else {
+            return res.send({
+                data: results
+            })
+        }
+    })
+})
+
+app.get('/hours', (req,res) => {
+
+    pool.query(HOURS_QUERY, (err, results) => {
         if(err) {
             return res.send(err)
         } else {

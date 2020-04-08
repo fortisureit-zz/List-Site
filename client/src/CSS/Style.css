@@ -7,65 +7,39 @@
   font-size: 14px;
 }
 
-body {
+body, #root, #index {
   width: 100vw;
   height: 100%;
 }
 
-#home {
-    height: 85vh;
+#index {
+  position: relative;
 }
 /* NAVIGATION */
 
-#nav {
-  height: 100%;
-  margin-bottom: 60px;
-}
-
-
-.h1 {
-  text-align: center !important;
-  margin: auto;
-  padding: auto;
+#navBar {
+  height: 75px;
 }
 
 #logo-image {
   width: 15px;
 }
 
-.ui.container {
+.ui.menu > .container, .ui.menu > .grid {
     justify-content: space-between;
+    align-items: center;
 }
 
-#right-nav {
-    height: 100%;
-}
 
 /* HEADER */
 
-.street.view.icon {
-    padding-left: 10px;
-}
 
-#main-header {
-    font-size: 1.7em;
-    display: grid;
-    place-items: center;
-}
-
-#main-image {
-    width: fit-content;
-}
-
-#inner-header div {
-    padding-left: 10px !important;
-}
 
 /* SEARCH BAR */
 
 .ui.icon.input {
     width: 80%;
-    height: 50px;
+    height: 45px;
     max-width: 935px;
 }
 
@@ -82,8 +56,54 @@ body {
 
 /* CARDS */
 
+#card {
+  display: grid;
+  place-items: center;
+  border-radius: .28571429rem;
+  border: 1px solid rgba(34,36,38,.1);
+  padding: 15px;
+  max-width: 300px;
+  max-height: 700px;
+  margin: 10px
+}
+
+#rImage {
+  max-width: 250px;
+  max-height: 250px;
+  margin: 0;
+}
+  .ui.header {
+    margin-bottom: 5px;
+  }
+
+  .meta {
+    font-size: 1em;
+    color: rgba(0,0,0,.4);
+  }
+
+  #cardSection1, #cardSection2, #cardSection3, #cardSection4 {
+    display: grid;
+    align-items: center;
+    width: 100%;
+  }
+  
+  #cardSection1 {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    place-items: center;
+  }
+
 #list h2 {
     text-align: center;
+}
+
+.react-sanfona-item-title {
+  font-size: .95em;
+}
+
+.react-sanfona-item-title:hover {
+  font-style: italic;
 }
 
 /* need to take search bar out of restaurant list container */
@@ -97,23 +117,34 @@ body {
 
 #cards-outer::-webkit-scrollbar { width: 0 !important }
 
-.ui.card {
-    margin: 1em !important;
+.description {
+  margin: 20px 0
+}
+
+#deliveryBtn, #takeoutBtn {
+  width: 100%
+}
+
+#call-btn {
+  padding-right: 15px;
+}
+
+.callBtn {
+  width: 30%;
+  margin-right: 15px;
+}
+
+#website-btn {
+  width: 100% !important;
 }
 
 .websiteBtn {
-  color: #21ba45 !important;
+  width: 100%;
 }
-.orderBtn {
-  color: #db2828 !important;
-  font-style: italic;
-}
-
-
 
 /* FOOTER */
 
-h5 {
-    margin-top: 20px !important;
+#inner-footer h5 {
+    margin-top: 20px ;
 }
 
