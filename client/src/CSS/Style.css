@@ -15,6 +15,15 @@ body, #root, #index {
 #index {
   position: relative;
 }
+
+#restaurant-list {
+    height: 100vh;
+}
+
+#map {
+  margin-top: 75px;
+  height: 385px;
+}
 /* NAVIGATION */
 
 #navBar {
@@ -86,12 +95,18 @@ body, #root, #index {
     align-items: center;
     width: 100%;
   }
+  #cardSection2, #cardSection3 {
+    margin-top: 5px;
+  }
   
   #cardSection1 {
     height: 100%;
     width: 100%;
     margin: 0;
     place-items: center;
+  }
+  #cardSection3 {
+    text-align: center;
   }
 
 #list h2 {

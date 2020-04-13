@@ -1,3 +1,9 @@
+@media (max-width: 950px) {
+  #cards {
+    grid-template-columns: auto auto;
+  }
+}
+
 @media (max-width: 750px) {
   .ui.menu > .container, .ui.menu > .grid {
     justify-content: space-evenly;
@@ -6,7 +12,16 @@
 }
 
 @media (max-width: 750px) {
- 
+   
+  #cardSection2, #cardSection3 {
+    margin-top: 0px;
+  }
+
+  #cards {
+    grid-template-columns: auto;
+    justify-items: initial;
+  }
+
   #cardHeader {
     font-size: 1.1em;
   }

@@ -23,8 +23,7 @@ const app = express();
 // Then pass them to cors:
 app.use(cors());
 
-const RESTRNTS_QUERY = "SELECT * FROM Restrnts";
-const HOURS_QUERY = "SELECT * FROM HrsofOp";
+const RESTRNTS_QUERY = 'SELECT * FROM v_RestrntPivot'
 
 const pool = mysql.createPool({
   connectionLimit: 10,
@@ -51,18 +50,6 @@ app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/restaurants", (req, res) => {
   pool.query(RESTRNTS_QUERY, (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send({
-        data: results,
-      });
-    }
-  });
-});
-
-app.get("/hours", (req, res) => {
-  pool.query(HOURS_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
