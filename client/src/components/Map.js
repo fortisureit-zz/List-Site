@@ -17,15 +17,8 @@ export class CurrentLocation extends React.Component {
       currentLocation: {
         lat: lat,
         lng: lng,
-      },
-      points: [],
+      }
     }
-  }
-  getRestaurants = (_) => {
-    fetch("/restaurants")
-      .then((response) => response.json())
-      .then((response) => this.setState({ points: response.data }))
-      .catch((err) => console.error(err))
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -36,18 +29,6 @@ export class CurrentLocation extends React.Component {
       this.recenterMap()
     }
   }
-  // render() {
-  //   let points = this.state
-  //   if (this.props.changeLocation === true) {
-  //     var bounds = new this.props.google.maps.LatLngBounds()
-  //     for (var i = 0; i < points.length; i++) {
-  //       bounds.extend({
-  //         lat: parseFloat(points.Latitude),
-  //         lng: parseFloat(points.Longitude),
-  //       })
-  //     }
-  //   }
-  // }
 
   recenterMap(props) {
     const map = this.map
@@ -136,12 +117,11 @@ export class CurrentLocation extends React.Component {
 export default CurrentLocation
 
 CurrentLocation.defaultProps = {
-  zoom: 14,
+  zoom: 11,
   initialCenter: {
     lat: 40.974476,
     lng: -81.485046,
   },
   centerAroundCurrentLocation: false,
-  changeLocation: false,
   visible: true,
 }

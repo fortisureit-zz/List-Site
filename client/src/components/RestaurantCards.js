@@ -34,14 +34,21 @@ export class RestaurantCards extends Component {
       showingInfoWindow: false, //Hides or the shows the infoWindow
       activeMarker: {}, //Shows the active marker upon click
       selectedPlace: {}, //Shows the infoWindow to the selected place upon a marke
-      newCenter: {
-        lat: -34,
-        lng: 151
-      }
+
+      // I think this was working?
+      // newCenter: {
+      //   lat: -34,
+      //   lng: 151
+      // },
+      points: [  
+        { lat: 41.101, lng: -81.765 },
+        { lat: 41.056, lng: -80.992 },
+        { lat: 40.605, lng: -81.044 },
+        { lat: 40.349, lng: -81.832 }
+      ]
     }
 
     this.searchHandler = this.searchHandler.bind(this)
-    this.panner = this.panner.bind(this)
   }
   onMarkerClick = (props, marker, e) => {
     this.setState({
@@ -50,12 +57,6 @@ export class RestaurantCards extends Component {
       showingInfoWindow: true,
     })
     
-  }
-
-  panner(props) {
-    // this.props.google.maps.Map.prototype.panTo({lat: -34, lng: 151})
-    this.props.newCenter = this.state.newCenter
-
   }
 
   onClose = (props) => {
@@ -106,6 +107,12 @@ export class RestaurantCards extends Component {
     //     lng: parseFloat(this.state.restaurants.Longitude),
     //   })
     // }
+
+    var bounds = new this.props.google.maps.LatLngBounds()
+      for (var i = 0; i < this.state.points.length; i++) {
+        bounds.extend(this.state.points[i])
+      }
+      console.log(this.state.points)
 
     // TIME CONVERTER
     function time(value) {
@@ -165,6 +172,9 @@ export class RestaurantCards extends Component {
             centerAroundCurrentLocation
             google={this.props.google}
             changeLocation
+            //or maybe this was i'm not sure
+            // mapCenter={this.props.mapCenter} 
+            bounds={bounds}
           >
             <Marker onClick={this.onMarkerClick} name={"current location"} />
 
