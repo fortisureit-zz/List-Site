@@ -55,15 +55,25 @@ export class RestaurantCards extends Component {
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
+      search: marker.name
     })
-    
   }
+
+  currentLocationClick = (props, marker, e) => {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    })
+  }
+
 
   onClose = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
         activeMarker: null,
+        search: ''
       })
     }
   }
@@ -112,7 +122,6 @@ export class RestaurantCards extends Component {
       for (var i = 0; i < this.state.points.length; i++) {
         bounds.extend(this.state.points[i])
       }
-      console.log(this.state.points)
 
     // TIME CONVERTER
     function time(value) {
@@ -176,7 +185,14 @@ export class RestaurantCards extends Component {
             // mapCenter={this.props.mapCenter} 
             bounds={bounds}
           >
-            <Marker onClick={this.onMarkerClick} name={"current location"} />
+            <Marker 
+                onClick={this.currentLocationClick} 
+                name={"Your Location"} 
+                icon={{
+                  url: window.location.origin +
+                  "/images/person-pin.png"
+                }}
+            />
 
             {this.state.restaurants
               .filter(searchingFor(this.state.search))
