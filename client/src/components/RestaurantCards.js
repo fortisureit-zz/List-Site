@@ -21,8 +21,7 @@ import {
   Container,
 } from "semantic-ui-react"
 
-import fflogo from "../images/ff-logo.svg"
-import eggs from "../images/eggs.jpg"
+import fflogo from "../images/order-logo.svg"
 
 export class RestaurantCards extends Component {
   constructor(props) {
@@ -34,28 +33,35 @@ export class RestaurantCards extends Component {
       showingInfoWindow: false, //Hides or the shows the infoWindow
       activeMarker: {}, //Shows the active marker upon click
       selectedPlace: {}, //Shows the infoWindow to the selected place upon a marke
-
+      markers: {},
       // I think this was working?
       // newCenter: {
       //   lat: -34,
       //   lng: 151
       // },
-      points: [  
-        { lat: 41.101, lng: -81.765 },
-        { lat: 41.056, lng: -80.992 },
-        { lat: 40.605, lng: -81.044 },
-        { lat: 40.349, lng: -81.832 }
-      ]
     }
 
     this.searchHandler = this.searchHandler.bind(this)
   }
+  // getDistance (selectedMarker) {
+  //   var distance = new this.props.google.maps.computeDistanceBetween()
+  //   var userLocation = this.props.mapCenter
+  //   distance(selectedMarker, userLocation)
+  // }
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
-      search: marker.name
+      search: marker.name,
+    })
+    // getDistance(marker.position)
+    console.log(marker.position)
+  }
+
+  addPoint = () => {
+    this.setState((state) => {
+      return { points: { lat: state.Latitude, lng: state.Longitude } }
     })
   }
 
@@ -67,19 +73,19 @@ export class RestaurantCards extends Component {
     })
   }
 
-
   onClose = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
         activeMarker: null,
-        search: ''
+        search: "",
       })
     }
   }
 
   componentDidMount() {
     this.getRestaurants()
+    console.log(this.props.google)
   }
 
   getRestaurants = (_) => {
@@ -93,69 +99,76 @@ export class RestaurantCards extends Component {
     this.setState({ search: e.target.value })
   }
 
-  // function searchingFor(search) {
-  //   return function (x) {
-  //     return x.Name.toLowerCase().includes(search.toLowerCase()) || !search
-  //   }
-  // }
-
   render() {
+    const restaurants = this.state.restaurants
+
     function searchingFor(search) {
       return function (x) {
-          let filteredRest = x.Name.toLowerCase() + x.Address.toLowerCase() + x.City.toLowerCase()
+        let filteredRest =
+          x.Name.toLowerCase() + x.Address.toLowerCase() + x.City.toLowerCase()
         return filteredRest.includes(search.toLowerCase()) || !search
-          
-          
-        } 
-      
+      }
     }
 
-    // const bounds = new this.props.google.maps.LatLngBounds()
-    // for (var i = 0; i < this.state.restaurants.length; i++) {
-    //   bounds.extend({
-    //     lat: parseFloat(this.state.restaurants.Latitude),
-    //     lng: parseFloat(this.state.restaurants.Longitude),
-    //   })
+
+    //PLACES ARRAY
+
+    const places = []
+
+    // for (let i = 0; i < restaurants.length; i++) {
+    //   places.push(new this.props.google.maps.LatLng(restaurants[i].Latitude, restaurants[i].Longitude))
     // }
 
-    var bounds = new this.props.google.maps.LatLngBounds()
-      for (var i = 0; i < this.state.points.length; i++) {
-        bounds.extend(this.state.points[i])
-      }
+    // function without lat/lng
+    for (let i = 0; i < restaurants.length; i++) {
+      let place
+      places.push({lat: parseFloat(restaurants[i].Latitude), lng: parseFloat(restaurants[i].Longitude) });
+    }
+    console.log(places)
 
+    var bounds = new this.props.google.maps.LatLngBounds();
+    for (var i = 0; i < places.length; i++) {
+      bounds.extend(places[i]);
+    }
+    // bounds.extend()
     // TIME CONVERTER
     function time(value) {
-      if (value !== null && value !== undefined){ //If value is passed in
-        if(value.indexOf('AM') > -1 || value.indexOf('PM') > -1){ //If time is already in standard time then don't format.
-          return value;
-        }
-        else {
-          if(value.length == 8){ //If value is the expected length for military time then process to standard time.
-            var hour = value.substring ( 0,2 ); //Extract hour
-            var minutes = value.substring ( 3,5 ); //Extract minutes
-            var identifier = 'AM'; //Initialize AM PM identifier
-     
-            if(hour == 12){ //If hour is 12 then should set AM PM identifier to PM
-              identifier = 'PM';
+      if (value !== null && value !== undefined) {
+        //If value is passed in
+        if (value.indexOf("AM") > -1 || value.indexOf("PM") > -1) {
+          //If time is already in standard time then don't format.
+          return value
+        } else {
+          if (value.length == 8) {
+            //If value is the expected length for military time then process to standard time.
+            var hour = value.substring(0, 2) //Extract hour
+            var minutes = value.substring(3, 5) //Extract minutes
+            var identifier = "AM" //Initialize AM PM identifier
+
+            if (hour == 12) {
+              //If hour is 12 then should set AM PM identifier to PM
+              identifier = "PM"
             }
-            if(hour == 0){ //If hour is 0 then set to 12 for standard time 12 AM
-              hour=12;
+            if (hour == 0) {
+              //If hour is 0 then set to 12 for standard time 12 AM
+              hour = 12
             }
-            if(hour > 12){ //If hour is greater than 12 then convert to standard 12 hour format and set the AM PM identifier to PM
-              hour = hour - 12;
-              identifier='PM';
+            if (hour > 12) {
+              //If hour is greater than 12 then convert to standard 12 hour format and set the AM PM identifier to PM
+              hour = hour - 12
+              identifier = "PM"
             }
-            return hour + ':' + minutes + ' ' + identifier; //Return the constructed standard time
-          }
-          else { //If value is not the expected length than just return the value as is
-            return value;
+            return hour + ":" + minutes + " " + identifier //Return the constructed standard time
+          } else {
+            //If value is not the expected length than just return the value as is
+            return value
           }
         }
       } else {
-        return 'Closed'
+        return "Closed"
         // eventually function needs updated to take in both time values but whatever
       }
-    };
+    }
     return (
       <div id="mainPage">
         <div id="nav">
@@ -182,16 +195,16 @@ export class RestaurantCards extends Component {
             google={this.props.google}
             changeLocation
             //or maybe this was i'm not sure
-            // mapCenter={this.props.mapCenter} 
+            // mapCenter={this.props.mapCenter}
             bounds={bounds}
+            // fitBounds={bounds}
           >
-            <Marker 
-                onClick={this.currentLocationClick} 
-                name={"Your Location"} 
-                icon={{
-                  url: window.location.origin +
-                  "/images/person-pin.png"
-                }}
+            <Marker
+              onClick={this.currentLocationClick}
+              name={"Your Location"}
+              icon={{
+                url: window.location.origin + "/images/Person.png",
+              }}
             />
 
             {this.state.restaurants
@@ -205,7 +218,18 @@ export class RestaurantCards extends Component {
                     lat: parseFloat(restaurant.Latitude),
                     lng: parseFloat(restaurant.Longitude),
                   }}
-                />
+                  icon={{
+                    url: window.location.origin + "/images/chef-hat.png",
+                  }}
+                >
+                  {/* {bounds.extend({
+                    lat: parseFloat(restaurant.Latitude),
+                    lng: parseFloat(restaurant.Longitude),
+                  })} */}
+
+                </Marker>
+
+                
               ))}
 
             <InfoWindow
@@ -225,7 +249,15 @@ export class RestaurantCards extends Component {
               {this.state.restaurants
                 .filter(searchingFor(this.state.search))
                 .map((restaurant) => (
-                  <div key={restaurant.RestrntID} id="card">
+                  <div
+                    key={restaurant.RestrntID}
+                    id="card"
+                    style={
+                      restaurant.Open == "N"
+                        ? { display: "none" }
+                        : { display: "grid" }
+                    }
+                  >
                     <Card.Content id="cardSection1">
                       <Image
                         id="rImage"
@@ -289,37 +321,65 @@ export class RestaurantCards extends Component {
                                         <Table.Body>
                                           <Table.Row>
                                             <Table.Cell>
-                                              Mon: {" " + time(restaurant.MondayOpen) + ' - ' + time(restaurant.MondayClose)}
+                                              Mon:{" "}
+                                              {" " +
+                                                time(restaurant.MondayOpen) +
+                                                " - " +
+                                                time(restaurant.MondayClose)}
                                             </Table.Cell>
                                           </Table.Row>
                                           <Table.Row>
                                             <Table.Cell>
-                                              Tues: {" " + time(restaurant.TuesdayOpen) + ' - ' + time(restaurant.TuesdayClose)}
+                                              Tues:{" "}
+                                              {" " +
+                                                time(restaurant.TuesdayOpen) +
+                                                " - " +
+                                                time(restaurant.TuesdayClose)}
                                             </Table.Cell>
                                           </Table.Row>
                                           <Table.Row>
                                             <Table.Cell>
-                                              Wed: {" " + time(restaurant.WednesdayOpen) + ' - ' + time(restaurant.WednesdayClose)}
+                                              Wed:{" "}
+                                              {" " +
+                                                time(restaurant.WednesdayOpen) +
+                                                " - " +
+                                                time(restaurant.WednesdayClose)}
                                             </Table.Cell>
                                           </Table.Row>
                                           <Table.Row>
                                             <Table.Cell>
-                                              Thurs: {" " + time(restaurant.ThursdayOpen) + ' - ' + time(restaurant.ThursdayClose)}
+                                              Thurs:{" "}
+                                              {" " +
+                                                time(restaurant.ThursdayOpen) +
+                                                " - " +
+                                                time(restaurant.ThursdayClose)}
                                             </Table.Cell>
                                           </Table.Row>
                                           <Table.Row>
                                             <Table.Cell>
-                                              Fri: {" " + time(restaurant.FridayOpen) + ' - ' + time(restaurant.FridayClose)}
+                                              Fri:{" "}
+                                              {" " +
+                                                time(restaurant.FridayOpen) +
+                                                " - " +
+                                                time(restaurant.FridayClose)}
                                             </Table.Cell>
                                           </Table.Row>
                                           <Table.Row>
                                             <Table.Cell>
-                                              Sat: {" " + time(restaurant.SaturdayOpen) + ' - ' + time(restaurant.SaturdayClose)}
+                                              Sat:{" "}
+                                              {" " +
+                                                time(restaurant.SaturdayOpen) +
+                                                " - " +
+                                                time(restaurant.SaturdayClose)}
                                             </Table.Cell>
                                           </Table.Row>
                                           <Table.Row>
                                             <Table.Cell>
-                                              Sun: {" " + time(restaurant.SundayOpen) + ' - ' + time(restaurant.SundayClose)}
+                                              Sun:{" "}
+                                              {" " +
+                                                time(restaurant.SundayOpen) +
+                                                " - " +
+                                                time(restaurant.SundayClose)}
                                             </Table.Cell>
                                           </Table.Row>
                                         </Table.Body>
@@ -333,19 +393,7 @@ export class RestaurantCards extends Component {
                                 </React.Fragment>
                                 <Card.Description>
                                   <Button.Group fluid>
-                                    <a
-                                      href={restaurant.DeliveryWebsite}
-                                      id="deliveryBtn"
-                                    >
-                                      <Button
-                                        basic
-                                        compact
-                                        color="orange"
-                                        id="deliveryBtn"
-                                      >
-                                        Delivery
-                                      </Button>
-                                    </a>
+                                    
                                     <a
                                       href={restaurant.OrderWebsite}
                                       id="takeoutBtn"
@@ -357,6 +405,19 @@ export class RestaurantCards extends Component {
                                         id="takeoutBtn"
                                       >
                                         Takeout
+                                      </Button>
+                                    </a>
+                                    <a
+                                      href={restaurant.DeliveryWebsite}
+                                      id="deliveryBtn"
+                                    >
+                                      <Button
+                                        basic
+                                        compact
+                                        color="orange"
+                                        id="deliveryBtn"
+                                      >
+                                        Delivery
                                       </Button>
                                     </a>
                                   </Button.Group>

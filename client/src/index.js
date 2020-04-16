@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 import List from "./components/List";
-import Home from "./components/Home";
 import Footer from "./components/Footer";
 
 import * as serviceWorker from "./serviceWorker";
@@ -17,7 +16,6 @@ ReactDOM.render(
   <BrowserRouter>
     <div id="index">
       <Switch>
-        <Route path="/home" component={Home} exact />
         <Route path="/" component={List} />
       </Switch>
       <Footer></Footer>

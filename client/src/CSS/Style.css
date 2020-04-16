@@ -7,7 +7,9 @@
   font-size: 14px;
 }
 
-body, #root, #index {
+body,
+#root,
+#index {
   width: 100vw;
   height: 100%;
 }
@@ -17,12 +19,16 @@ body, #root, #index {
 }
 
 #restaurant-list {
-    height: 100vh;
+  height: 100vh;
 }
 
 #map {
   margin-top: 75px;
-  height: 385px;
+  height: 405px;
+  background-color: rgba(0, 0, 0, 0.87);
+  /* height: 385px;
+  box-shadow: 0px 1px 0px black;
+  margin-bottom: 25px; */
 }
 /* NAVIGATION */
 
@@ -30,91 +36,119 @@ body, #root, #index {
   height: 75px;
 }
 
+
 #logo-image {
-  width: 15px;
+  width: 200px;
+  max-width: 200px;
 }
 
-.ui.menu > .container, .ui.menu > .grid {
-    justify-content: space-between;
-    align-items: center;
+@media (max-width: 600px) {
+  #logo-image {
+    width: 125px;
+  }
 }
-
+.ui.menu > .container,
+.ui.menu > .grid {
+  justify-content: space-between;
+  align-items: center;
+}
 
 /* HEADER */
-
-
 
 /* SEARCH BAR */
 
 .ui.icon.input {
-    width: 80%;
-    height: 45px;
-    max-width: 935px;
+  width: 80%;
+  height: 45px;
+  max-width: 935px;
 }
 
 #search-bar {
-    border-radius: 50px;
+  border-radius: 50px;
 }
 /* IMAGE */
 
 #main-image {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
-
 
 /* CARDS */
 
 #card {
   display: grid;
   place-items: center;
-  border-radius: .28571429rem;
-  border: 1px solid rgba(34,36,38,.1);
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34, 36, 38, 0.1);
   padding: 15px;
-  max-width: 300px;
-  max-height: 700px;
-  margin: 10px
+  padding: 25px;
+  width: 300px;
+  /* margin: 10px; */
+  margin-top: 20px;
+}
+.check.icon {
+  color: green;
+}
+
+.close.icon {
+  color: red;
 }
 
 #rImage {
-  max-width: 250px;
+  width: 250px;
+  height: auto;
   max-height: 250px;
   margin: 0;
 }
-  .ui.header {
-    margin-bottom: 5px;
-  }
+.ui.header {
+  margin-bottom: 5px;
+}
 
-  .meta {
-    font-size: 1em;
-    color: rgba(0,0,0,.4);
-  }
+.meta {
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.4);
+}
 
-  #cardSection1, #cardSection2, #cardSection3, #cardSection4 {
-    display: grid;
-    align-items: center;
-    width: 100%;
-  }
-  #cardSection2, #cardSection3 {
-    margin-top: 5px;
-  }
-  
-  #cardSection1 {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    place-items: center;
-  }
-  #cardSection3 {
-    text-align: center;
-  }
+#cardSection1,
+#cardSection2,
+#cardSection3,
+#cardSection4 {
+  display: grid;
+  align-items: center;
+  width: 100%;
+}
+#cardSection2,
+#cardSection3 {
+  margin-top: 5px;
+}
+
+#cardSection1 {
+  width: 250px;
+  margin: 0;
+  place-items: center;
+}
+#cardSection3 {
+  text-align: center;
+}
+
+.react-sanfona-item.react-sanfona-item-expanded > h3 {
+  margin-bottom: 5px !important;
+}
+
+/* Class="Content" - Address under "More Information" dropdown */
+.ui.list .list > .item > .icon + .content,
+.ui.list .list > .item > .image + .content,
+.ui.list > .item > .icon + .content,
+.ui.list > .item > .image + .content {
+  padding: 0 0 10px 0.5em !important;
+}
 
 #list h2 {
-    text-align: center;
+  text-align: center;
 }
 
 .react-sanfona-item-title {
-  font-size: .95em;
+  font-size: 0.95em;
 }
 
 .react-sanfona-item-title:hover {
@@ -122,22 +156,24 @@ body, #root, #index {
 }
 
 /* need to take search bar out of restaurant list container */
-#cards-outer{
-    overflow-x: hidden;
-    height: 60vh;
-    overflow: -moz-scrollbars-none;
-    -ms-overflow-style: none;
-
+#cards-outer {
+  overflow-x: hidden;
+  height: 60vh;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
 }
 
-#cards-outer::-webkit-scrollbar { width: 0 !important }
+#cards-outer::-webkit-scrollbar {
+  width: 0 !important;
+}
 
 .description {
-  margin: 20px 0
+  margin: 20px 0;
 }
 
-#deliveryBtn, #takeoutBtn {
-  width: 100%
+#deliveryBtn,
+#takeoutBtn {
+  width: 100%;
 }
 
 #call-btn {
@@ -149,9 +185,9 @@ body, #root, #index {
   margin-right: 15px;
 }
 
-#website-btn {
+/* #website-btn {
   width: 100% !important;
-}
+} */
 
 .websiteBtn {
   width: 100%;
@@ -160,6 +196,5 @@ body, #root, #index {
 /* FOOTER */
 
 #inner-footer h5 {
-    margin-top: 20px ;
+  margin-top: 20px;
 }
-

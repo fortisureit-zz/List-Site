@@ -17,8 +17,17 @@ export class CurrentLocation extends React.Component {
       currentLocation: {
         lat: lat,
         lng: lng,
-      }
+      },
+      restaurants: [],
     }
+    // var markerBounds = new google.maps.LatLngBounds()
+  }
+
+  getRestaurants = (_) => {
+    fetch("/restaurants")
+      .then((response) => response.json())
+      .then((response) => this.setState({ restaurants: response.data }))
+      .catch((err) => console.error(err))
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -37,13 +46,28 @@ export class CurrentLocation extends React.Component {
     const google = this.props.google
     const maps = google.maps
 
+    
     if (map) {
       let center = new maps.LatLng(current.lat, current.lng)
       map.panTo(center)
+      const restaurants = this.state.restaurants
+      const places = []
+      for (let i = 0; i < restaurants.length; i++) {
+        places.push({
+          lat: parseFloat(restaurants[i].Latitude),
+          lng: parseFloat(restaurants[i].Longitude),
+        })
+      }
+      var bounds = new this.props.google.maps.LatLngBounds()
+      for (var i = 0; i < places.length; i++) {
+        bounds.extend(places[i])
+      }
+      map.fitBounds(bounds)
     }
   }
 
   componentDidMount() {
+    this.getRestaurants()
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
@@ -84,6 +108,7 @@ export class CurrentLocation extends React.Component {
 
       // maps.Map() is constructor that instantiates the map
       this.map = new maps.Map(node, mapConfig)
+
     }
   }
 
@@ -97,7 +122,7 @@ export class CurrentLocation extends React.Component {
       return React.cloneElement(c, {
         map: this.map,
         google: this.props.google,
-        mapCenter: this.state.currentLocation,
+        mapCenter: this.state.currentLocation
       })
     })
   }
@@ -123,5 +148,5 @@ CurrentLocation.defaultProps = {
     lng: -81.485046,
   },
   centerAroundCurrentLocation: false,
-  visible: true,
+  visible: true
 }
