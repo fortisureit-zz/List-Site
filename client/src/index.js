@@ -18,7 +18,6 @@ ReactDOM.render(
       <Switch>
         <Route path="/" component={List} />
       </Switch>
-      <Footer></Footer>
     </div>
   </BrowserRouter>,
   document.getElementById("root")
