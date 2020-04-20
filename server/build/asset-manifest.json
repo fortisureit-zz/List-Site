@@ -1,30 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.98ec2a78.chunk.css",
-    "main.js": "/static/js/main.8e234df6.chunk.js",
-    "main.js.map": "/static/js/main.8e234df6.chunk.js.map",
+    "main.css": "/static/css/main.9a01dc3f.chunk.css",
+    "main.js": "/static/js/main.f8afce2a.chunk.js",
+    "main.js.map": "/static/js/main.f8afce2a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.cfae3202.js",
     "runtime-main.js.map": "/static/js/runtime-main.cfae3202.js.map",
     "static/css/2.7df41cd5.chunk.css": "/static/css/2.7df41cd5.chunk.css",
-    "static/js/2.f0a25be1.chunk.js": "/static/js/2.f0a25be1.chunk.js",
-    "static/js/2.f0a25be1.chunk.js.map": "/static/js/2.f0a25be1.chunk.js.map",
+    "static/js/2.82c3fd31.chunk.js": "/static/js/2.82c3fd31.chunk.js",
+    "static/js/2.82c3fd31.chunk.js.map": "/static/js/2.82c3fd31.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.1702c7211467392dca6438187b9a347a.js": "/precache-manifest.1702c7211467392dca6438187b9a347a.js",
+    "precache-manifest.0a8d28229cf20b8f6fdb0cad7f6fd097.js": "/precache-manifest.0a8d28229cf20b8f6fdb0cad7f6fd097.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.7df41cd5.chunk.css.map": "/static/css/2.7df41cd5.chunk.css.map",
-    "static/css/main.98ec2a78.chunk.css.map": "/static/css/main.98ec2a78.chunk.css.map",
-    "static/js/2.f0a25be1.chunk.js.LICENSE.txt": "/static/js/2.f0a25be1.chunk.js.LICENSE.txt",
+    "static/css/main.9a01dc3f.chunk.css.map": "/static/css/main.9a01dc3f.chunk.css.map",
+    "static/js/2.82c3fd31.chunk.js.LICENSE.txt": "/static/js/2.82c3fd31.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/static/media/outline-icons.ef60a4f6.woff",
-    "static/media/eggs.jpg": "/static/media/eggs.0f62ec0d.jpg",
-    "static/media/ff-logo.svg": "/static/media/ff-logo.b514f7a5.svg",
-    "static/media/map.png": "/static/media/map.abe22478.png",
-    "static/media/two-women.jpg": "/static/media/two-women.bf825e80.jpg"
+    "static/media/order-logo.svg": "/static/media/order-logo.e56c32c1.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cfae3202.js",
     "static/css/2.7df41cd5.chunk.css",
-    "static/js/2.f0a25be1.chunk.js",
-    "static/css/main.98ec2a78.chunk.css",
-    "static/js/main.8e234df6.chunk.js"
+    "static/js/2.82c3fd31.chunk.js",
+    "static/css/main.9a01dc3f.chunk.css",
+    "static/js/main.f8afce2a.chunk.js"
   ]
 }

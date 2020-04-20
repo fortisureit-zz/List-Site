@@ -88,7 +88,7 @@ export class RestaurantCards extends Component {
   }
 
   getRestaurants = (_) => {
-    fetch("/restaurants")
+    fetch("https://food.fortisureit.com/restaurants")
       .then((response) => response.json())
       .then((response) => this.setState({ restaurants: response.data }))
       .catch((err) => console.error(err))
@@ -273,7 +273,7 @@ export class RestaurantCards extends Component {
                         height="250px"
                       />
                     </Card.Content>
-                    <div id="#cardText">
+                    <div id="cardText">
                     <Card.Content id="cardSection2">
                       <Header id="cardHeader">{restaurant.Name}</Header>
                         {restaurant.OnlineOrders == "Y" ? (

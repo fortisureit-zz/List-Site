@@ -133,8 +133,10 @@ body,
 }
 
 #cardText {
+  height: 100% !important;
   width: 250px;
-
+  display: grid !important;
+  align-items: self-end !important;
 }
 
 #cardSection1,
@@ -142,12 +144,13 @@ body,
 #cardSection3,
 #cardSection4 {
   display: grid;
-  align-items: center;
+  align-items: self-end;
   width: 250px;
 }
 
 #cardSection1 {
   place-items: center;
+  height: 100%;
 }
 #cardSection3 {
   text-align: center;
@@ -161,25 +164,6 @@ body,
   margin-top: 4px;
 }
 
-/* Class="Content" - Address under "More Information" dropdown */
-.ui.list .list > .item > .icon + .content,
-.ui.list .list > .item > .image + .content,
-.ui.list > .item > .icon + .content,
-.ui.list > .item > .image + .content {
-  padding: 0 0 10px 0.5em !important;
-}
-
-#list h2 {
-  text-align: center;
-}
-
-.react-sanfona-item-title {
-  font-size: 0.95em;
-}
-
-.react-sanfona-item-title:hover {
-  font-style: italic;
-}
 
 /* need to take search bar out of restaurant list container */
 #cards-outer {
