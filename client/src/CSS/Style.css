@@ -30,6 +30,12 @@ body,
   box-shadow: 0px 1px 0px black;
   margin-bottom: 25px; */
 }
+
+#infoPage {
+  display: grid;
+  place-items: center;
+}
+
 /* NAVIGATION */
 
 #navBar {
@@ -53,7 +59,24 @@ body,
   align-items: center;
 }
 
+#questionCircle {
+  color: #fff;
+  margin:10px;
+  margin-top: 15px;
+  font-size: 2em;
+  text-align: center;
+}
+
 /* HEADER */
+
+#header {
+   margin-top: 100px;
+   margin-bottom: 50px;
+}
+
+#moreToCome {
+  margin-top: 75px;
+}
 
 /* SEARCH BAR */
 
@@ -80,11 +103,11 @@ body,
   place-items: center;
   border-radius: 0.28571429rem;
   border: 1px solid rgba(34, 36, 38, 0.1);
-  padding: 15px;
-  padding: 25px;
+  padding: 10px;
   width: 300px;
   /* margin: 10px; */
   margin-top: 20px;
+  text-align: center;
 }
 .check.icon {
   color: green;
@@ -109,30 +132,33 @@ body,
   color: rgba(0, 0, 0, 0.4);
 }
 
+#cardText {
+  width: 250px;
+
+}
+
 #cardSection1,
 #cardSection2,
 #cardSection3,
 #cardSection4 {
   display: grid;
   align-items: center;
-  width: 100%;
-}
-#cardSection2,
-#cardSection3 {
-  margin-top: 5px;
+  width: 250px;
 }
 
 #cardSection1 {
-  width: 250px;
-  margin: 0;
   place-items: center;
 }
 #cardSection3 {
   text-align: center;
 }
 
-.react-sanfona-item.react-sanfona-item-expanded > h3 {
-  margin-bottom: 5px !important;
+#cardHeader, #takeoutBtn, #cardSection3, #cardSection4 {
+  margin-top: 8px;
+}
+
+#deliveryBtn {
+  margin-top: 4px;
 }
 
 /* Class="Content" - Address under "More Information" dropdown */

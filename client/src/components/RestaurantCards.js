@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import { Accordion, AccordionItem } from "react-sanfona"
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react"
 
 import CurrentLocation from "./Map"
@@ -110,7 +109,6 @@ export class RestaurantCards extends Component {
       }
     }
 
-
     //PLACES ARRAY
 
     const places = []
@@ -122,13 +120,16 @@ export class RestaurantCards extends Component {
     // function without lat/lng
     for (let i = 0; i < restaurants.length; i++) {
       let place
-      places.push({lat: parseFloat(restaurants[i].Latitude), lng: parseFloat(restaurants[i].Longitude) });
+      places.push({
+        lat: parseFloat(restaurants[i].Latitude),
+        lng: parseFloat(restaurants[i].Longitude),
+      })
     }
     console.log(places)
 
-    var bounds = new this.props.google.maps.LatLngBounds();
+    var bounds = new this.props.google.maps.LatLngBounds()
     for (var i = 0; i < places.length; i++) {
-      bounds.extend(places[i]);
+      bounds.extend(places[i])
     }
     // bounds.extend()
     // TIME CONVERTER
@@ -186,6 +187,7 @@ export class RestaurantCards extends Component {
                 value={this.state.search}
                 id="search-bar"
               ></Input>
+              <a href='/info'><Icon name="question circle outline" id='questionCircle'></Icon></a>
             </Container>
           </Menu>
         </div>
@@ -226,10 +228,7 @@ export class RestaurantCards extends Component {
                     lat: parseFloat(restaurant.Latitude),
                     lng: parseFloat(restaurant.Longitude),
                   })} */}
-
                 </Marker>
-
-                
               ))}
 
             <InfoWindow
@@ -274,173 +273,122 @@ export class RestaurantCards extends Component {
                         height="250px"
                       />
                     </Card.Content>
-
+                    <div id="#cardText">
                     <Card.Content id="cardSection2">
                       <Header id="cardHeader">{restaurant.Name}</Header>
-                      <Card.Meta>
-                        <span>
-                          Takeout:{" "}
-                          <Icon
-                            name={
-                              restaurant.OnlineOrders == "Y" ? "check" : "close"
-                            }
-                          ></Icon>
-                        </span>
-                        <span>
-                          Delivery:{" "}
-                          <Icon
-                            name={
-                              restaurant.DeliveryOrders == "Y"
-                                ? "check"
-                                : "close"
-                            }
-                          ></Icon>
-                        </span>
-                        {/* <span>Open Now: Y</span> FUTURE VERSION*/}
-                      </Card.Meta>
+                        {restaurant.OnlineOrders == "Y" ? (
+                          <a href={restaurant.OrderWebsite} id="takeoutBtn">
+                            <Button
+                              basic
+                              compact
+                              color="yellow"
+                              id="takeoutBtn"
+                            >
+                              Online Order 
+                            </Button>
+                          </a>
+                        ) : (
+                          null
+                        )}
+                        {restaurant.Delivery == "Y" ? (
+                          <a href={restaurant.DeliveryWebsite} id="deliveryBtn">
+                            <Button
+                              basic
+                              compact
+                              color="orange"
+                              id="deliveryBtn"
+                            >
+                              Delivery
+                            </Button>
+                          </a>
+                        ) : (
+                          null
+                        )}
                     </Card.Content>
 
                     <Card.Content id="cardSection3">
-                      <Accordion>
-                        {[0].map((item) => {
-                          return (
-                            <AccordionItem
-                              title={"More Information  ←"}
-                              expanded={item === 2}
-                            >
-                              <div>
-                                <React.Fragment>
-                                  <Popup
-                                    trigger={
-                                      <Button basic fluid>
-                                        Hours of Operation
-                                      </Button>
-                                    }
-                                    content={
-                                      <Table basic="very" celled collapsing>
-                                        <Table.Body>
-                                          <Table.Row>
-                                            <Table.Cell>
-                                              Mon:{" "}
-                                              {" " +
-                                                time(restaurant.MondayOpen) +
-                                                " - " +
-                                                time(restaurant.MondayClose)}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                          <Table.Row>
-                                            <Table.Cell>
-                                              Tues:{" "}
-                                              {" " +
-                                                time(restaurant.TuesdayOpen) +
-                                                " - " +
-                                                time(restaurant.TuesdayClose)}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                          <Table.Row>
-                                            <Table.Cell>
-                                              Wed:{" "}
-                                              {" " +
-                                                time(restaurant.WednesdayOpen) +
-                                                " - " +
-                                                time(restaurant.WednesdayClose)}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                          <Table.Row>
-                                            <Table.Cell>
-                                              Thurs:{" "}
-                                              {" " +
-                                                time(restaurant.ThursdayOpen) +
-                                                " - " +
-                                                time(restaurant.ThursdayClose)}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                          <Table.Row>
-                                            <Table.Cell>
-                                              Fri:{" "}
-                                              {" " +
-                                                time(restaurant.FridayOpen) +
-                                                " - " +
-                                                time(restaurant.FridayClose)}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                          <Table.Row>
-                                            <Table.Cell>
-                                              Sat:{" "}
-                                              {" " +
-                                                time(restaurant.SaturdayOpen) +
-                                                " - " +
-                                                time(restaurant.SaturdayClose)}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                          <Table.Row>
-                                            <Table.Cell>
-                                              Sun:{" "}
-                                              {" " +
-                                                time(restaurant.SundayOpen) +
-                                                " - " +
-                                                time(restaurant.SundayClose)}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                        </Table.Body>
-                                      </Table>
-                                    }
-                                    on="click"
-                                    wide
-                                    hideOnScroll
-                                    position="right center"
-                                  />
-                                </React.Fragment>
-                                <Card.Description>
-                                  <Button.Group fluid>
-                                    
-                                    <a
-                                      href={restaurant.OrderWebsite}
-                                      id="takeoutBtn"
-                                    >
-                                      <Button
-                                        basic
-                                        compact
-                                        color="yellow"
-                                        id="takeoutBtn"
-                                      >
-                                        Takeout
-                                      </Button>
-                                    </a>
-                                    <a
-                                      href={restaurant.DeliveryWebsite}
-                                      id="deliveryBtn"
-                                    >
-                                      <Button
-                                        basic
-                                        compact
-                                        color="orange"
-                                        id="deliveryBtn"
-                                      >
-                                        Delivery
-                                      </Button>
-                                    </a>
-                                  </Button.Group>
-                                </Card.Description>
-                                <List>
-                                  <List.Item
-                                    icon="marker"
-                                    content={
-                                      restaurant.Address +
-                                      ", " +
-                                      restaurant.City +
-                                      ", " +
-                                      restaurant.State +
-                                      " " +
-                                      restaurant.Zipcode
-                                    }
-                                  />
-                                </List>
-                              </div>
-                            </AccordionItem>
-                          )
-                        })}
-                      </Accordion>
+                      <React.Fragment>
+                        <Popup
+                          trigger={
+                            <Button basic fluid>
+                              Hours of Operation
+                            </Button>
+                          }
+                          content={
+                            <Table basic="very" celled collapsing>
+                              <Table.Body>
+                                <Table.Row>
+                                  <Table.Cell>
+                                    Mon:{" "}
+                                    {" " +
+                                      time(restaurant.MondayOpen) +
+                                      " - " +
+                                      time(restaurant.MondayClose)}
+                                  </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                  <Table.Cell>
+                                    Tues:{" "}
+                                    {" " +
+                                      time(restaurant.TuesdayOpen) +
+                                      " - " +
+                                      time(restaurant.TuesdayClose)}
+                                  </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                  <Table.Cell>
+                                    Wed:{" "}
+                                    {" " +
+                                      time(restaurant.WednesdayOpen) +
+                                      " - " +
+                                      time(restaurant.WednesdayClose)}
+                                  </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                  <Table.Cell>
+                                    Thurs:{" "}
+                                    {" " +
+                                      time(restaurant.ThursdayOpen) +
+                                      " - " +
+                                      time(restaurant.ThursdayClose)}
+                                  </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                  <Table.Cell>
+                                    Fri:{" "}
+                                    {" " +
+                                      time(restaurant.FridayOpen) +
+                                      " - " +
+                                      time(restaurant.FridayClose)}
+                                  </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                  <Table.Cell>
+                                    Sat:{" "}
+                                    {" " +
+                                      time(restaurant.SaturdayOpen) +
+                                      " - " +
+                                      time(restaurant.SaturdayClose)}
+                                  </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                  <Table.Cell>
+                                    Sun:{" "}
+                                    {" " +
+                                      time(restaurant.SundayOpen) +
+                                      " - " +
+                                      time(restaurant.SundayClose)}
+                                  </Table.Cell>
+                                </Table.Row>
+                              </Table.Body>
+                            </Table>
+                          }
+                          on="click"
+                          wide
+                          hideOnScroll
+                          position="right center"
+                        />
+                      </React.Fragment>
                     </Card.Content>
 
                     <Card.Content extra id="cardSection4">
@@ -462,6 +410,7 @@ export class RestaurantCards extends Component {
                         </a>
                       </div>
                     </Card.Content>
+                    </div>
                   </div>
                 ))}
             </div>

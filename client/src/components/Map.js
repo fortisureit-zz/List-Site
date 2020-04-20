@@ -50,19 +50,19 @@ export class CurrentLocation extends React.Component {
     if (map) {
       let center = new maps.LatLng(current.lat, current.lng)
       map.panTo(center)
-      const restaurants = this.state.restaurants
-      const places = []
-      for (let i = 0; i < restaurants.length; i++) {
-        places.push({
-          lat: parseFloat(restaurants[i].Latitude),
-          lng: parseFloat(restaurants[i].Longitude),
-        })
-      }
-      var bounds = new this.props.google.maps.LatLngBounds()
-      for (var i = 0; i < places.length; i++) {
-        bounds.extend(places[i])
-      }
-      map.fitBounds(bounds)
+      // const restaurants = this.state.restaurants
+      // const places = []
+      // for (let i = 0; i < restaurants.length; i++) {
+      //   places.push({
+      //     lat: parseFloat(restaurants[i].Latitude),
+      //     lng: parseFloat(restaurants[i].Longitude),
+      //   })
+      // }
+      // var bounds = new this.props.google.maps.LatLngBounds()
+      // for (var i = 0; i < places.length; i++) {
+      //   bounds.extend(places[i])
+      // }
+      // map.fitBounds(bounds)
     }
   }
 
@@ -142,7 +142,7 @@ export class CurrentLocation extends React.Component {
 export default CurrentLocation
 
 CurrentLocation.defaultProps = {
-  zoom: 11,
+  zoom: 10,
   initialCenter: {
     lat: 40.974476,
     lng: -81.485046,

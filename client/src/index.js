@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import List from "./components/List";
 import Footer from "./components/Footer";
+import Info from './components/InfoPage'
 
 import * as serviceWorker from "./serviceWorker";
 import "semantic-ui-css/semantic.min.css";
@@ -16,7 +17,8 @@ ReactDOM.render(
   <BrowserRouter>
     <div id="index">
       <Switch>
-        <Route path="/" component={List} />
+        <Route exact path="/" component={List} />
+        <Route path="/info" component={Info} />
       </Switch>
     </div>
   </BrowserRouter>,
